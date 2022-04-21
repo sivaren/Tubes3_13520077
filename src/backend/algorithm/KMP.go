@@ -43,17 +43,18 @@ func KMPMatch(text string, pattern string) int {
 	return -1
 }
 
-func main() {
-	var Pattern string
-	var Text string
-	Text = "ACTGCAGTTCAGAGTCA"
-	Pattern = "AGTCA"
-	println("Text:", Text)
-	println("Pattern:", Pattern)
-	pos := KMPMatch(Text, Pattern)
-	if pos == -1 {
-		print("Pattern not found in Text")
-	} else {
-		print("Pattern found at position:", pos)
-	}
-}
+// Contoh Fungsi Main
+// func main() {
+// 	var Pattern string
+// 	var Text string
+// 	Text = "ACTGCAGTTCAGAGTCA"
+// 	Pattern = "AGTCA"
+// 	println("Text:", Text)
+// 	println("Pattern:", Pattern)
+// 	pos := KMPMatch(Text, Pattern)
+// 	if pos == -1 {
+// 		print("Pattern not found in Text")
+// 	} else {
+// 		print("Pattern found at position:", pos)
+// 	}
+// }
