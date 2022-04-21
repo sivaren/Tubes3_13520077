@@ -1,11 +1,9 @@
 package main
 
-import "fmt"
-
 func BorderFunction(pattern string) []int {
 	N := len(pattern)
 	var borderList = make([]int, N)
-	i := 0
+	i := 1
 	j := 0
 	borderList[0] = 0
 	for i < N {
@@ -29,7 +27,6 @@ func KMPMatch(text string, pattern string) int {
 	i := 0
 	j := 0
 	borderList := BorderFunction(pattern)
-
 	for i < N {
 		if pattern[j] == text[i] {
 			if j == M-1 {
@@ -47,5 +44,16 @@ func KMPMatch(text string, pattern string) int {
 }
 
 func main() {
-	fmt.Println("Hello World")
+	var Pattern string
+	var Text string
+	Text = "ACTGCAGTTCAGAGTCA"
+	Pattern = "AGTCA"
+	println("Text:", Text)
+	println("Pattern:", Pattern)
+	pos := KMPMatch(Text, Pattern)
+	if pos == -1 {
+		print("Pattern not found in Text")
+	} else {
+		print("Pattern found at position:", pos)
+	}
 }
