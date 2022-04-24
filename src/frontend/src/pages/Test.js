@@ -1,5 +1,5 @@
 import '../App.css'
-import logo from '../assets/logo.png'
+import hero from '../assets/hero.png'
 import favicon from '../assets/favicon.png'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -18,12 +18,12 @@ function Test() {
   }, []);
 
   return (
-    <div className="App">
-     <div className="flex items-center justify-center h-20 bg-slate-600">
+    <div className="">
+     {/* <div className="flex items-center justify-center h-20 bg-slate-600">
       <div className="test">
         AlgeoComeback!
       </div>
-     </div>
+     </div> */}
      <div className="flex justify-center my-5 gap-x-5 ">
       <div className="flex basis-1/4 items-center justify-center h-20 bg-color-1 rounded-lg">
           Color1
@@ -36,7 +36,7 @@ function Test() {
       </div>
      </div>
       <div className="flex justify-center mt-3">
-        <img src={logo} alt=""></img>
+        <img src={hero} alt=""></img>
         <img src={favicon} alt=""></img>
       </div>
      {flight.map((item, idx) => {

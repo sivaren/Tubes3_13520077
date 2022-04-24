@@ -1,0 +1,21 @@
+.nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    
+    width: 20%;
+    height: 100%;
+    
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(37 99 235 / 0.5);
+}
+.nav-item {
+    transition-delay: 150ms;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-item:hover {
+    background-color: white;
+}
