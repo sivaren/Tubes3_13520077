@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    * {
+        box-sizing: border-box;
+        font-family: 'Denk One', sans-serif;
+        letter-spacing: 0.3px;
+    }
+    body {
+        /* background-image: url('./assets/background.png');
+        background-size: cover; */
+        background-color: black;
+    }
+    h1 {
+        font-size: 96px;
+    }
+}
