@@ -1,3 +1,9 @@
+:root {
+  --color1: #06FFF0;
+  --bcolor1: #00FFFF;
+  --bcolor2: #05FF00;
+}
+
 .test {
   color: white;
 }

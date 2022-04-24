@@ -4,7 +4,7 @@ import favicon from '../assets/favicon.png'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-function Test() {
+function MyTest() {
   const [flight, setFlight] = useState([]);
 
   const getFlights = async () => {
@@ -52,4 +52,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default MyTest;
