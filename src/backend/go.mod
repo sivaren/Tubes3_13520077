@@ -1,4 +1,4 @@
-module backend
+module AlgeoComeback.com
 
 go 1.18
 

@@ -1,11 +1,11 @@
 package controller
 
 import (
-	"backend/models"
 	"net/http"
 
+	"AlgeoComeback.com/models"
+	"AlgeoComeback.com/services"
 	"github.com/gin-gonic/gin"
-	"github.com/go-delve/delve/service"
 )
 
 func AddPenyakit(c *gin.Context) {
@@ -16,11 +16,23 @@ func AddPenyakit(c *gin.Context) {
 		return
 	}
 
-	err = service.AddPenyakit(&penyakit)
+	err = services.AddPenyakit(&penyakit)
 	if err != nil {
 		c.JSON(http.StatusBadGateway, gin.H{"Message": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"Message": "Successfully added"})
+}
+
+func AddHasilPrediksi(c *gin.Context) {
+
+}
+
+func HasilPrediksi(c *gin.Context) {
+
+}
+
+func Searching(c *gin.Context) {
+
 }

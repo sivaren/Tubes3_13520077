@@ -1,12 +1,15 @@
-package backend
+package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"AlgeoComeback.com/routes"
+)
 
 var (
-	router = gin.Default()
+	Router = gin.Default()
 )
 
 func main() {
-	routes.mapUrls()
-	router.Run(":8080")
+	routes.MapUrls(Router)
+	Router.Run(":8080")
 }
