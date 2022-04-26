@@ -1,4 +1,4 @@
-package algorithm
+package libs
 
 func BorderFunction(pattern string) []int {
 	N := len(pattern)

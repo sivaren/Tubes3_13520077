@@ -1,4 +1,4 @@
-package algorithm
+package libs
 
 func findMin(i int, j int) int {
 	if i < j {

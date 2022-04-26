@@ -1,7 +1,12 @@
-package main
+package backend
 
-import "backend/app"
+import "github.com/gin-gonic/gin"
+
+var (
+	router = gin.Default()
+)
 
 func main() {
-	app.StartApplication()
+	routes.mapUrls()
+	router.Run(":8080")
 }
