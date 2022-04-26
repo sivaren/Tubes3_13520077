@@ -1,9 +1,7 @@
-* {
-  box-sizing: border-box;
-}
-
-.App {
-  text-align: center;
+:root {
+  --color1: #06FFF0;
+  --bcolor1: #00FFFF;
+  --bcolor2: #05FF00;
 }
 
 .test {
