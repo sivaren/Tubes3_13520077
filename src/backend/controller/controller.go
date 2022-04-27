@@ -18,11 +18,11 @@ func AddPenyakit(c *gin.Context) {
 
 	err = services.AddPenyakit(&penyakit)
 	if err != nil {
-		c.JSON(http.StatusBadGateway, gin.H{"Message": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"Message": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"Message": "Successfully added"})
+	c.JSON(http.StatusOK, gin.H{"Message": "penyakit berhasil ditambahkan"})
 }
 
 func AddHasilPrediksi(c *gin.Context) {
