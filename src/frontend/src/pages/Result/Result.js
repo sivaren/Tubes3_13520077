@@ -13,7 +13,7 @@ function Result() {
 
     const getResults = async () => {
         const response = await axios.post('http://localhost:8080/api/v1/search', {});
-        // console.log(response);
+        
         console.log(response.data.data);
         setResults(response.data.data);
     }
