@@ -44,7 +44,7 @@ function Result() {
                         results.map((item, key) => {
                             return(
                                 <div key={key} className="result-item flex justify-center text-center p-5">
-                                    <h2>{item.date} - {item.name} - {item.disease} - {item.prediction}</h2>
+                                    <h2>{key+1}. {item.date} - {item.name} - {item.disease} - {item.prediction}</h2>
                                 </div>
                             );
                         })

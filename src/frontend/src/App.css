@@ -1,5 +1,6 @@
 :root {
   --color1: #06FFF0;
+  --color2: rgb(223, 117, 117);
   --bcolor1: #00FFFF;
   --bcolor2: #05FF00;
 }
@@ -39,6 +40,8 @@
 
 .input-file {
   display: flex;
+  max-width: 20%;
+  min-width: 225px;
   text-shadow: 2px 2px 4px #00000072;
 }
 

@@ -72,13 +72,24 @@ function Add() {
                     </form>
                 </div>
                 {
-                    submitted &&
-                    <div className="test-css flex flex-col mr-10 items-center justify-center py-5 bg-slate-400">
-                        <div>{ diseaseName }</div>
-                        <div>{ sequenceDna }</div>
-                        <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
-                        <div>{ 'Submitted' }</div>
-                    </div>
+                    submitted && (
+                        validDna ?
+                        <div className="alert-success test-css flex flex-col mb-10 mr-10 items-center justify-center py-5">
+                            <div>{ diseaseName }</div>
+                            <div>{ sequenceDna }</div>
+                            <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
+                            <div>{ 'Submitted' }</div>
+                            <h2> - ADD DISEASE SUCCESSFUL - </h2>
+                        </div>
+                        :
+                        <div className="alert-danger test-css flex flex-col mb-10 mr-10 items-center justify-center py-5">
+                            <div>{ diseaseName }</div>
+                            <div>{ sequenceDna }</div>
+                            <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
+                            <div>{ 'Submitted' }</div>
+                            <h2> - INVALID DNA - </h2>
+                        </div>
+                    )
                 }
            </div>
         </>

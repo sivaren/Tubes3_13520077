@@ -1,3 +1,39 @@
 .single-text {
     width: 35%;
 }
+
+.alert-success {
+    color: var(--color1);
+    background-color: rgba(0, 0, 0, 0.621);
+
+    border-radius: 13px;
+    outline: var(--color1) solid 1px;
+    box-shadow: 0px 4px 5px 1px rgb(0 0 0 / 27%);
+
+    transition-delay: 150ms;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.alert-success:hover {
+    color:rgba(0, 0, 0, 0.621);
+    background-color: var(--color1);
+}
+
+.alert-danger {
+    color: var(--color2);
+    background-color: rgba(0, 0, 0, 0.621);
+
+    border-radius: 13px;
+    outline: var(--color2) solid 1px;
+    box-shadow: 0px 4px 5px 1px rgb(0 0 0 / 27%);
+
+    transition-delay: 150ms;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.alert-danger:hover {
+    color:rgba(0, 0, 0, 0.621);
+    background-color: var(--color2);
+}

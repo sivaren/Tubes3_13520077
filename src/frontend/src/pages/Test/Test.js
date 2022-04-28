@@ -88,14 +88,21 @@ function Test() {
                     </form>
                 </div>
                 { 
-                    submitted && 
-                    <div className="test-css flex flex-col mr-10 items-center justify-center py-5 bg-slate-400">
-                        <div>{ patientName }</div>
-                        <div>{ patientDna }</div>
-                        <div>{ diseasePrediction }</div>
-                        <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
-                        <div>{ 'Submitted' }</div>
-                    </div>
+                    submitted && (
+                        validDna ?
+                        <div className="alert-success flex flex-col mb-10 mr-10 p-5 items-center justify-center text-center bg-slate-400">
+                            <div>{ patientName }</div>
+                            <div>{ patientDna }</div>
+                            <div>{ diseasePrediction }</div>
+                            <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
+                            <div>{ 'Submitted' }</div>
+                            <h2>28 April 2022 - Fulan - Herpes - False</h2>
+                        </div>
+                        :
+                        <div className="alert-danger test-css flex flex-col mb-10 mr-10 p-5 items-center text-center justify-center">
+                            <h2> - INVALID DNA - </h2>
+                        </div>
+                    )
                 }
            </div>
         </>
