@@ -1,13 +1,7 @@
 package libs
 
-func findMin(i int, j int) int {
-	if i < j {
-		return i
-	} else {
-		return j
-	}
-}
-
+// Menerima masukan pattern berupa string
+// Mengembalikan indeks terbesar dalam pattern dari semua karakter yang ada
 func findLastOccurrence(pattern string) []int {
 	var lastOccurrence = make([]int, 128)
 
@@ -25,6 +19,11 @@ func findLastOccurrence(pattern string) []int {
 
 	return lastOccurrence
 }
+
+// Melakukan pencocokan string pattern secara
+//		algoritma Boyer-Moore (BM) terhadap text
+// Mengembalikan true jika substring dari teks sesuai dengan pattern.
+// 		Jika tidak sesuai akan mengembalikan false.
 
 func SearchBoyerMoore(text string, pattern string) bool {
 	lastOccurrenceList := findLastOccurrence(pattern)
@@ -57,19 +56,3 @@ func SearchBoyerMoore(text string, pattern string) bool {
 	}
 	return false
 }
-
-/* func main() {
-	var Pattern string
-	var Text string
-	Text = "ACTGCAGTTCAGAGTCA"
-	Pattern = "AGTCA"
-	println("Text:", Text)
-	println("Pattern:", Pattern)
-	pos := searchBoyerMoore(Text, Pattern)
-	if pos == -1 {
-		print("Pattern not found in Text")
-	} else {
-		print("Pattern found at position:", pos)
-	}
-}
-*/

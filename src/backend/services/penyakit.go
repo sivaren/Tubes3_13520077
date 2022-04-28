@@ -10,6 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
+// Fungsi untuk menambahkan penyakit ke dalam tabel jenis_penyakit
 func AddPenyakit(Penyakit *models.Penyakit) error {
 	var err error
 
@@ -22,6 +23,7 @@ func AddPenyakit(Penyakit *models.Penyakit) error {
 	return err
 }
 
+// Fungsi untuk mengambil data dengan atribut nama_penyakit yang sama, apabila sudah ada, maka tidak mengembalikan error
 func GetPenyakit(namaPenyakit *string) (string, error) {
 	var (
 		DNAPenyakit string

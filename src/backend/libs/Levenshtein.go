@@ -1,26 +1,6 @@
 package libs
 
-func findMax(i int, j int) int {
-	if i > j {
-		return i
-	} else {
-		return j
-	}
-}
-
-func minimum(a, b, c int) int {
-	if a < b {
-		if a < c {
-			return a
-		}
-	} else {
-		if b < c {
-			return b
-		}
-	}
-	return c
-}
-
+// Fungsi untuk menghitung nilai distance menggunakan algoritma Damerau–Levenshtein
 func levenshteinDistance(text string, pattern string) int {
 	rows := len(text) + 1
 	cols := len(pattern) + 1
@@ -55,6 +35,7 @@ func levenshteinDistance(text string, pattern string) int {
 	return matrix[rows-1][cols-1]
 }
 
+// Fungsi untuk mencari nilai persentase kemiripan antara string text dengan string pattern
 func Score(text string, pattern string) float64 {
 	distance := levenshteinDistance(text, pattern)
 	distmax := float64(distance) / float64(findMax(len(text), len(pattern)))

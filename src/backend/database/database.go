@@ -11,12 +11,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
+// Mendeklarasikan beberapa variabel yang akan digunakan untuk mengakses database
 var (
 	CLIENT                    *mongo.Client     = Initialize()
 	PENYAKIT_COLLECTION       *mongo.Collection = CLIENT.Database("dna_db").Collection("jenis_penyakit")
 	HASIL_PREDIKSI_COLLECTION *mongo.Collection = CLIENT.Database("dna_db").Collection("hasil_prediksi")
 )
 
+// Fungsi untuk melakukan connection ke database MongoDB sesuai dengan URI yang diberikan
 func Initialize() *mongo.Client {
 	var (
 		ctx    context.Context
@@ -39,7 +41,7 @@ func Initialize() *mongo.Client {
 	return client
 }
 
-/* GET ALL HASIL PREDIKSI */
+// Fungsi untuk mengambil semua document (row) yang ada di tabel hasil_prediksi
 func GetHasilPrediksi() []bson.M {
 	var resultList []bson.M
 	cursor, err := HASIL_PREDIKSI_COLLECTION.Find(context.TODO(), bson.M{})

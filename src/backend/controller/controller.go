@@ -10,6 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Fungsi untuk menambah data penyakit ke tabel jenis_penyakit (mengecek apabila sudah ada data tersebut atau belum di database)
 func AddPenyakit(c *gin.Context) {
 	var penyakit models.Penyakit
 	err := c.ShouldBindJSON(&penyakit)
@@ -28,23 +29,7 @@ func AddPenyakit(c *gin.Context) {
 		"message": "penyakit berhasil ditambahkan"})
 }
 
-func AddHasilPrediksi(c *gin.Context) {
-	var prediksi models.HasilPrediksi
-	err := c.ShouldBindJSON(&prediksi)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	err = services.AddHasilPrediksi(&prediksi)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	c.JSON(http.StatusOK, gin.H{"success": "Prediksi berhasil ditambahkan"})
-}
-
+// Fungsi untuk menjalankan algoritma KMP atau Boyer-Moore dan menghitung persentase keakuratan string text dan string pattern
 func TestDNA(c *gin.Context) {
 	var input models.Input
 	err := c.ShouldBindJSON(&input)
@@ -64,6 +49,7 @@ func TestDNA(c *gin.Context) {
 		"data": hasilPrediksi})
 }
 
+// Fungsi yang mengembalikan semua data di tabel hasil_prediksi untuk dikirim ke bagian front end
 func Searching(c *gin.Context) {
 	result := database.GetHasilPrediksi()
 	c.JSON(http.StatusOK, gin.H{"message": "Prediksi berhasil ditambahkan",

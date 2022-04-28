@@ -10,6 +10,7 @@ import (
 	"AlgeoComeback.com/models"
 )
 
+// Fungsi untuk menjalankan algoritma KMP atau Boyer-Moore dan menghitung distance menggunakan algoritma Damerau–Levenshtein
 func DNATest(Input models.Input) (models.HasilPrediksi, error) {
 	var hasilPrediksi models.HasilPrediksi
 	var status bool

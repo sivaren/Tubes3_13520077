@@ -1,7 +1,8 @@
 package libs
 
 // Menerima masukan pattern berupa string
-// Mengembalikan ukuran terbesar prefix dari pattern[0..k] dan suffix dari pattern[1..K]
+// Mengembalikan ukuran terbesar prefix dari pattern[0..k]
+// 		dan suffix dari pattern[1..K]
 func BorderFunction(pattern string) []int {
 	N := len(pattern)
 	var borderList = make([]int, N)
@@ -23,6 +24,9 @@ func BorderFunction(pattern string) []int {
 	return borderList
 }
 
+// Melakukan pencocokan string pattern secara algoritma KMP terhadap text
+// Mengembalikan true jika substring dari teks sesuai dengan pattern. Jika tidak
+// 		sesuai akan mengembalikan false.
 func KMPMatch(text string, pattern string) bool {
 	N := len(text)
 	M := len(pattern)

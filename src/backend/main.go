@@ -10,6 +10,7 @@ var (
 	Router = gin.Default()
 )
 
+// Fungsi main dari backend
 func main() {
 	Router.Use(cors.Default())
 	routes.MapUrls(Router)
