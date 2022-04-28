@@ -12,7 +12,7 @@ import (
 func AddPenyakit(Penyakit *models.Penyakit) error {
 	var err error
 
-	err = GetPenyakit(&Penyakit.NamaPenyakit)
+	_, err = GetPenyakit(&Penyakit.NamaPenyakit)
 	if err != nil {
 		return errors.New("nama penyakit sudah ada")
 	}
@@ -21,9 +21,16 @@ func AddPenyakit(Penyakit *models.Penyakit) error {
 	return err
 }
 
-func GetPenyakit(namaPenyakit *string) error {
-	var Penyakit *models.Penyakit
+func GetPenyakit(namaPenyakit *string) (string, error) {
+	var (
+		DNAPenyakit string
+		Penyakit    *models.Penyakit
+	)
 	query := bson.D{bson.E{Key: "nama_penyakit", Value: namaPenyakit}}
 	err := database.PENYAKIT_COLLECTION.FindOne(context.TODO(), query).Decode(&Penyakit)
-	return err
+	if err != nil {
+		return DNAPenyakit, err
+	}
+	DNAPenyakit = Penyakit.DNAPenyakit
+	return DNAPenyakit, err
 }

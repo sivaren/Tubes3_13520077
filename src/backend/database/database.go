@@ -50,7 +50,7 @@ func main() {
 	}
 	fmt.Println(databases)
 
-	insertHasilPrediksi(client, "2022-04-12", "test", "hiv", false)
+	insertHasilPrediksi(client, "2022-04-11", "test", "hiv", false)
 }
 
 func getCollection(client *mongo.Client, collectionName string) *mongo.Collection {
