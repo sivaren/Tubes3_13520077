@@ -8,6 +8,6 @@ import (
 func MapUrls(Router *gin.Engine) {
 	Router.POST("/api/v1/add/disease", controller.AddPenyakit)
 	Router.POST("/api/v1/add/test", controller.AddHasilPrediksi)
-	// Router.POST("/api/v1/test", controller.TestDNA)
-	// Router.GET("/api/v1/search", controller.Searching)
+	Router.POST("/api/v1/test", controller.TestDNA)
+	Router.POST("/api/v1/search", controller.Searching)
 }

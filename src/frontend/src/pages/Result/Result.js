@@ -1,32 +1,26 @@
 import './Result.css'
-import { searchValidation } from '../../utils/SearchValidation';
+import { 
+    searchValidation1, 
+    searchValidation2,
+    searchValidation3,
+} from '../../utils/SearchValidation';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 
 function Result() {
     const [searchValue, setSearchValue] = useState('');
-    const [results, setResults] = useState([
-        {
-            date: '13 April 2022',
-            name: 'Fulan',
-            disease: 'HIV',
-            prediction: 'True'
-        },
-        {
-            date: '26 Januari 2023',
-            name: 'Fulin',
-            disease: 'Anemia',
-            prediction: 'False'
-        }
-    ]);
+    const [results, setResults] = useState([]);
 
     const getResults = async () => {
-        const response = await axios.get('link-here');
-        setResults(response.data);
+        const response = await axios.post('http://localhost:8080/api/v1/search', {});
+        // console.log(response);
+        console.log(response.data.data);
+        setResults(response.data.data);
     }
 
     useEffect(function () {
         document.title='Test Results | Algeo Comeback';
+        getResults();
     }, []);
     
 
@@ -52,13 +46,19 @@ function Result() {
                         results.filter((val) => {
                             if(searchValue === "") {
                                 return val
-                            } else if (searchValidation(searchValue, val)) {
+                            } else if (searchValidation1(searchValue, val)) {
+                                return val
+                            } else if (searchValidation2(searchValue, val)) {
+                                return val
+                            } else if (searchValidation3(searchValue, val)) {
                                 return val
                             } 
                             }).map((item, key) => {
                             return(
                                 <div key={key} className="result-item flex justify-center text-center p-5">
-                                    <h2>{key+1}. {item.date} - {item.name} - {item.disease} - {item.prediction}</h2>
+                                    <h2>
+                                        {key+1}. {item.tanggal_prediksi} - {item.nama_pasien} - {item.penyakit_prediksi} - {item.accuracy}% - {item.status_prediksi ? 'True' : 'False'}
+                                    </h2>
                                 </div>
                             );
                         })

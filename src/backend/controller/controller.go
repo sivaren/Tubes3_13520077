@@ -1,13 +1,13 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 
 	"AlgeoComeback.com/database"
 	"AlgeoComeback.com/models"
 	"AlgeoComeback.com/services"
 	"github.com/gin-gonic/gin"
-	"go.mongodb.org/mongo-driver/bson"
 )
 
 func AddPenyakit(c *gin.Context) {
@@ -49,19 +49,23 @@ func TestDNA(c *gin.Context) {
 	var input models.Input
 	err := c.ShouldBindJSON(&input)
 	if err != nil {
+		fmt.Println("error bind")
 		c.JSON(http.StatusBadRequest, gin.H{"Error": err.Error()})
 	}
 
-	err = services.DNATest(input)
+	hasilPrediksi, err := services.DNATest(input)
 	if err != nil {
+		fmt.Println("error hasil prediksi")
 		c.JSON(http.StatusBadRequest, gin.H{"Error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"Success": "Prediksi berhasil ditambahkan"})
+	c.JSON(http.StatusOK, gin.H{"Success": "Prediksi berhasil ditambahkan",
+		"data": hasilPrediksi})
 }
 
-func Searching(c *gin.Context) []bson.M {
+func Searching(c *gin.Context) {
 	result := database.GetHasilPrediksi()
-	return result
+	c.JSON(http.StatusOK, gin.H{"Success": "Prediksi berhasil ditambahkan",
+		"data": result})
 }
