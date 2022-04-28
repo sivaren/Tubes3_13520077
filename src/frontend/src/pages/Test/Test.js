@@ -72,6 +72,7 @@ function Test() {
         else {
             setValidDna(false)
         }
+        e.target.reset();
     }
 
     useEffect(function () {
