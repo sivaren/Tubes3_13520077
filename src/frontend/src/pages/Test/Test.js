@@ -1,10 +1,13 @@
 import './Test.css'
+import { ValidDNA } from '../../utils/ValidDNA'
 import { useState, useEffect } from 'react';
 
 function Test() {
     const [patientName, setPatientName] = useState('');
     const [patientDna, setPatiendna] = useState('');
     const [diseasePrediction, setDiseasePrediction] = useState('');
+    const [validDna, setValidDna] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
     useEffect(function () {
         document.title='Test DNA | Algeo Comeback';
@@ -22,6 +25,17 @@ function Test() {
         }
     }
 
+    function submitHandler(event) {
+        event.preventDefault();
+        if (ValidDNA.test(patientDna)) {
+            setValidDna(true)
+        }
+        else {
+            setValidDna(false)
+        }
+        setSubmitted(true);
+    }
+
     return (
         <>
             <div className="main-page container flex flex-col pl-10 w-4/5">
@@ -29,13 +43,14 @@ function Test() {
                     <h1>TEST DNA</h1>
                 </div>
                 <div className="flex-wrap">
-                    <form>
+                    <form onSubmit={(event) => submitHandler(event)}>
                         <div className="flex">
                             <div className="flex-col basis-1/2">
                                 <h2 className="text-color-1 h2-shadow">Patient Name</h2>
                                 <input 
                                     type="text"
                                     onChange={(event) => setPatientName(event.target.value)}
+                                    value={patientName}
                                     className="input-text double-text my-1 px-3 py-2 shadow-lg 
                                     focus:border-color-1 focus:ring-color-1 focus:ring-2 transition" 
                                     name="inputPatient"
@@ -47,6 +62,7 @@ function Test() {
                                 <input 
                                     type="text"
                                     onChange={(event) => setDiseasePrediction(event.target.value)}
+                                    value={diseasePrediction}
                                     className="input-text double-text my-1 px-3 py-2 shadow-lg 
                                     focus:border-color-1 focus:ring-color-1 focus:ring-2 transition" 
                                     name="inputPrediction"
@@ -66,16 +82,21 @@ function Test() {
                             name="inputFile"
                             required
                         />
-                        <button className="submit-btn flex justify-center my-8 py-3 bg-bcolor-2">
+                        <button type="submit" className="submit-btn flex justify-center my-8 py-3 bg-bcolor-2">
                             <h2>SUBMIT</h2>
                         </button>
                     </form>
                 </div>
-                <div className="test-css flex flex-col mr-10 items-center justify-center py-5 bg-slate-400">
-                    <div>{ patientName }</div>
-                    <div>{ patientDna }</div>
-                    <div>{ diseasePrediction }</div>
-                </div>
+                { 
+                    submitted && 
+                    <div className="test-css flex flex-col mr-10 items-center justify-center py-5 bg-slate-400">
+                        <div>{ patientName }</div>
+                        <div>{ patientDna }</div>
+                        <div>{ diseasePrediction }</div>
+                        <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
+                        <div>{ 'Submitted' }</div>
+                    </div>
+                }
            </div>
         </>
     );
