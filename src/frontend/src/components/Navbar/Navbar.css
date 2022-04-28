@@ -13,9 +13,10 @@
 }
 .nav-item {
     transition-delay: 150ms;
-    transition-duration: 200ms;
+    transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .nav-item:hover {
-    background-color: grey;
+    background-color: rgba(255, 255, 255, 0.216);
+    outline: var(--color1) solid 1px;
 }

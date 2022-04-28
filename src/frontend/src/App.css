@@ -14,3 +14,70 @@
   margin: 10px auto;
   border-radius: 12px;
 }
+
+.h2-shadow {
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.main-page {
+  min-height: 90vh;
+}
+
+.input-text {
+  border-radius: 7px;
+  background-color: #ffffffb5;
+
+  transition-delay: 150ms;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.input-text:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.input-file {
+  display: flex;
+  text-shadow: 2px 2px 4px #00000072;
+}
+
+.input-file::file-selector-button {
+  display: flex;
+  justify-content: center;
+  min-width: 225px;
+  
+  color: white;
+  text-shadow: 2px 2px 4px #000000ad;
+  cursor: pointer;
+
+  transition-delay: 150ms;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-file::file-selector-button:hover {
+  background-color: var(--bcolor2);
+}
+
+.submit-btn:hover {
+  background-color: var(--bcolor1);
+}
+
+.submit-btn {
+  width: 20%;
+  min-width: 225px;
+
+  color: white;
+  text-shadow: 2px 2px 4px #000000ad;
+
+  border-radius: 0.5rem/* 8px */;
+  box-shadow: 0px 5px 10px 2px rgb(0 0 0 / 55%);
+
+  transition-delay: 150ms;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.test-css {
+  letter-spacing: 5px;
+}

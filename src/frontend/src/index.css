@@ -8,22 +8,28 @@
         font-family: 'Denk One', sans-serif;
     }
     body {
-        /* background-image: url('./assets/background.png');
-        background-size: cover; */
+        background-image: url('./assets/background.png');
+        background-size: cover;
+        background-repeat: no-repeat;
         /* background-color: rgb(148 163 184 / 0.5); */
-        background-color: rgb(37 99 235 / 0.5);
+        /* background-color: rgb(37 99 235 / 0.5); */
     }
     h1 {
         font-size: 96px;
         line-height: 1.1;
         letter-spacing: 0.3px;
+
         margin: 0;
         padding: 0;
+        
+        color: white;
+        text-shadow: 2px 2px 4px #000000;
     }
     h2 {
         font-size: 36px;
         line-height: 1.1;
         letter-spacing: 0.3px;
+        
         margin: 0;
         padding: 0;
     }

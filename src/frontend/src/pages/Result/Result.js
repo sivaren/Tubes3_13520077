@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import './Result.css'
+import { useState, useEffect } from 'react';
 
 function Result() {
     const [searchValue, setSearchValue] = useState('');
@@ -24,7 +24,7 @@ function Result() {
 
     return (
         <>
-            <div className="result-page container flex flex-col pl-10 w-4/5 bg-red-400">
+            <div className="main-page container flex flex-col pl-10 w-4/5">
                 <div className="flex-wrap py-4">
                     <h1 className="text-white drop-shadow-lg">TEST RESULTS</h1>
                 </div>
@@ -39,7 +39,7 @@ function Result() {
                         name="inputResult"
                     />
                 </div>
-                <div className="result-container flex flex-col my-7 gap-y-4 text-color-1">
+                <div className="flex flex-col my-7 gap-y-4 text-color-1">
                     { results.length > 0 ? 
                         results.map((item, key) => {
                             return(
