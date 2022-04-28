@@ -3,9 +3,11 @@ package controller
 import (
 	"net/http"
 
+	"AlgeoComeback.com/database"
 	"AlgeoComeback.com/models"
 	"AlgeoComeback.com/services"
 	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 func AddPenyakit(c *gin.Context) {
@@ -22,7 +24,8 @@ func AddPenyakit(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "penyakit berhasil ditambahkan"})
+	c.JSON(http.StatusOK, gin.H{"status": 200,
+		"message": "penyakit berhasil ditambahkan"})
 }
 
 func AddHasilPrediksi(c *gin.Context) {
@@ -42,16 +45,23 @@ func AddHasilPrediksi(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"Success": "Prediksi berhasil ditambahkan"})
 }
 
-func AlgoritmaKMP(c *gin.Context) {
-	// afk dl :D
-	// var penyakit models.Penyakit
-	// pos := libs.KMPMatch()
+func TestDNA(c *gin.Context) {
+	var input models.Input
+	err := c.ShouldBindJSON(&input)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"Error": err.Error()})
+	}
+
+	err = services.DNATest(input)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"Error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"Success": "Prediksi berhasil ditambahkan"})
 }
 
-func AlgoritmaBoyerMoore(c *gin.Context) {
-
-}
-
-func Searching(c *gin.Context) {
-
+func Searching(c *gin.Context) []bson.M {
+	result := database.GetHasilPrediksi()
+	return result
 }

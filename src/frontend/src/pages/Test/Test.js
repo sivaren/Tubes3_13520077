@@ -1,5 +1,5 @@
 import './Test.css'
-import { ValidDNA } from '../../utils/ValidDNA';
+import { dnaValidation } from '../../utils/DNAValidation';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -25,10 +25,9 @@ function Test() {
 
     const testDna = async (e) => {
         e.preventDefault();
-        // await axios.post('link-here', {
-            
+        // await axios.post('http://localhost:8080/api/v1/add/test', {
         // });
-        if (ValidDNA.test(patientDna)) {
+        if (dnaValidation(patientDna)) {
             setValidDna(true)
         }
         else {

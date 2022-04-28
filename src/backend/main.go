@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"AlgeoComeback.com/routes"
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 )
 
 var (
@@ -10,6 +11,7 @@ var (
 )
 
 func main() {
+	Router.Use(cors.Default())
 	routes.MapUrls(Router)
-	Router.Run(":8080")
+	Router.Run()
 }

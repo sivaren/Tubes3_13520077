@@ -5,4 +5,6 @@ type HasilPrediksi struct {
 	NamaPasien       string `json:"nama_pasien" bson:"nama_pasien" binding:"required"`
 	PenyakitPrediksi string `json:"penyakit_prediksi" bson:"penyakit_prediksi" binding:"required"`
 	StatusPrediksi   bool   `json:"status_prediksi" bson:"status_prediksi" binding:"required"`
+	Method           string `json:"method" bson:"method" binding:"required"`
+	Accuracy         string `json:"accuracy" bson:"accuracy" binding:"required"`
 }

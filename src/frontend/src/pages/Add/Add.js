@@ -1,5 +1,5 @@
 import './Add.css'
-import { ValidDNA } from '../../utils/ValidDNA';
+import { dnaValidation } from '../../utils/DNAValidation';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -23,16 +23,23 @@ function Add() {
 
     const addDisease = async (e) => {
         e.preventDefault();
-        // await axios.post('link-here', {
-            
-        // });
-        if (ValidDNA.test(sequenceDna)) {
+        setSubmitted(true);
+
+        if (dnaValidation(sequenceDna)) {
             setValidDna(true)
+            const data = {
+                nama_penyakit: diseaseName,
+                rantai_dna: sequenceDna
+            };
+            console.log(data);
+            
+            const response = await axios.post('http://localhost:8080/api/v1/add/disease', data);
+            console.log('Ini return dari POST: ');
+            console.log(response.data);
         }
         else {
             setValidDna(false)
         }
-        setSubmitted(true);
     }
 
     useEffect(function () {
@@ -79,18 +86,18 @@ function Add() {
                     submitted && (
                         validDna ?
                         <div className="alert-success test-css flex flex-col mb-10 mr-10 items-center justify-center py-5">
-                            <div>{ diseaseName }</div>
+                            {/* <div>{ diseaseName }</div>
                             <div>{ sequenceDna }</div>
                             <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
-                            <div>{ 'Submitted' }</div>
+                            <div>{ 'Submitted' }</div> */}
                             <h2> - ADD DISEASE SUCCESSFUL - </h2>
                         </div>
                         :
                         <div className="alert-danger test-css flex flex-col mb-10 mr-10 items-center justify-center py-5">
-                            <div>{ diseaseName }</div>
+                            {/* <div>{ diseaseName }</div>
                             <div>{ sequenceDna }</div>
                             <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
-                            <div>{ 'Submitted' }</div>
+                            <div>{ 'Submitted' }</div> */}
                             <h2> - INVALID DNA - </h2>
                         </div>
                     )

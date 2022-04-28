@@ -1,4 +1,5 @@
 import './Result.css'
+import { searchValidation } from '../../utils/SearchValidation';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 
@@ -48,7 +49,13 @@ function Result() {
                 </div>
                 <div className="flex flex-col my-7 gap-y-4 text-color-1">
                     { results.length > 0 ? 
-                        results.map((item, key) => {
+                        results.filter((val) => {
+                            if(searchValue === "") {
+                                return val
+                            } else if (searchValidation(searchValue, val)) {
+                                return val
+                            } 
+                            }).map((item, key) => {
                             return(
                                 <div key={key} className="result-item flex justify-center text-center p-5">
                                     <h2>{key+1}. {item.date} - {item.name} - {item.disease} - {item.prediction}</h2>

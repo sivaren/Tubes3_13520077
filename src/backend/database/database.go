@@ -99,7 +99,7 @@ func deleteFromDatabase(client *mongo.Client, collectionName string, id primitiv
 }
 
 /* GET HASIL PREDIKSI */
-func getHasilPrediksibyTanggal(client *mongo.Client, ctx context.Context, tanggal_prediksi primitive.DateTime) []bson.M {
+func GetHasilPrediksibyTanggal(client *mongo.Client, ctx context.Context, tanggal_prediksi string) []bson.M {
 	var resultList []bson.M
 	collection := getCollection(client, COLLECTION_HASIL_PREDIKSI)
 	cursor, err := collection.Find(context.TODO(), bson.M{"tanggal_prediksi": tanggal_prediksi})

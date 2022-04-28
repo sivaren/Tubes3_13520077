@@ -26,14 +26,14 @@ func findLastOccurrence(pattern string) []int {
 	return lastOccurrence
 }
 
-func searchBoyerMoore(text string, pattern string) int {
+func SearchBoyerMoore(text string, pattern string) bool {
 	lastOccurrenceList := findLastOccurrence(pattern)
 	n := len(text)
 	m := len(pattern)
 	i := m - 1
 
 	if i > n-1 {
-		return -1
+		return false
 	} else {
 		j := m - 1
 		for {
@@ -42,7 +42,7 @@ func searchBoyerMoore(text string, pattern string) int {
 			} else {
 				if pattern[j] == text[i] {
 					if j == 0 {
-						return i
+						return true
 					} else {
 						i--
 						j--
@@ -55,7 +55,7 @@ func searchBoyerMoore(text string, pattern string) int {
 			}
 		}
 	}
-	return -1
+	return false
 }
 
 /* func main() {

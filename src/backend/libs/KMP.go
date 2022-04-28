@@ -21,7 +21,7 @@ func BorderFunction(pattern string) []int {
 	return borderList
 }
 
-func KMPMatch(text string, pattern string) int {
+func KMPMatch(text string, pattern string) bool {
 	N := len(text)
 	M := len(pattern)
 	i := 0
@@ -30,7 +30,7 @@ func KMPMatch(text string, pattern string) int {
 	for i < N {
 		if pattern[j] == text[i] {
 			if j == M-1 {
-				return i - M + 1
+				return true
 			}
 			i++
 			j++
@@ -40,21 +40,5 @@ func KMPMatch(text string, pattern string) int {
 			i++
 		}
 	}
-	return -1
+	return false
 }
-
-// Contoh Fungsi Main
-// func main() {
-// 	var Pattern string
-// 	var Text string
-// 	Text = "ACTGCAGTTCAGAGTCA"
-// 	Pattern = "AGTCA"
-// 	println("Text:", Text)
-// 	println("Pattern:", Pattern)
-// 	pos := KMPMatch(Text, Pattern)
-// 	if pos == -1 {
-// 		print("Pattern not found in Text")
-// 	} else {
-// 		print("Pattern found at position:", pos)
-// 	}
-// }

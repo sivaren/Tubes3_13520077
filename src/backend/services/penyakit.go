@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"errors"
+	"fmt"
 
 	"AlgeoComeback.com/database"
 	"AlgeoComeback.com/models"
@@ -13,7 +14,7 @@ func AddPenyakit(Penyakit *models.Penyakit) error {
 	var err error
 
 	_, err = GetPenyakit(&Penyakit.NamaPenyakit)
-	if err != nil {
+	if err == nil {
 		return errors.New("nama penyakit sudah ada")
 	}
 
@@ -29,6 +30,7 @@ func GetPenyakit(namaPenyakit *string) (string, error) {
 	query := bson.D{bson.E{Key: "nama_penyakit", Value: namaPenyakit}}
 	err := database.PENYAKIT_COLLECTION.FindOne(context.TODO(), query).Decode(&Penyakit)
 	if err != nil {
+		fmt.Println("Masuk", err)
 		return DNAPenyakit, err
 	}
 	DNAPenyakit = Penyakit.DNAPenyakit

@@ -2,8 +2,10 @@ package database
 
 import (
 	"context"
+	"fmt"
 	"log"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -35,4 +37,44 @@ func Initialize() *mongo.Client {
 
 	log.Println("Successfully connected to MongoDB")
 	return client
+}
+
+/* GET ALL HASIL PREDIKSI */
+func GetHasilPrediksi() []bson.M {
+	var resultList []bson.M
+	cursor, err := HASIL_PREDIKSI_COLLECTION.Find(context.TODO(), bson.M{})
+	if err != nil {
+		fmt.Println("Cannot find using tanggal_prediksi")
+	} else {
+		for cursor.Next(context.TODO()) {
+			var result bson.M
+			err := cursor.Decode(&result)
+			if err != nil {
+				fmt.Println("Decoding failed")
+			}
+			resultList = append(resultList, result)
+			fmt.Println("Result:", result)
+		}
+	}
+	return resultList
+}
+
+/* GET HASIL PREDIKSI */
+func GetHasilPrediksibyTanggal(ctx context.Context, tanggal_prediksi string) []bson.M {
+	var resultList []bson.M
+	cursor, err := HASIL_PREDIKSI_COLLECTION.Find(context.TODO(), bson.M{"tanggal_prediksi": tanggal_prediksi})
+	if err != nil {
+		fmt.Println("Cannot find using tanggal_prediksi")
+	} else {
+		for cursor.Next(ctx) {
+			var result bson.M
+			err := cursor.Decode(&result)
+			if err != nil {
+				fmt.Println("Decoding failed")
+			}
+			resultList = append(resultList, result)
+			fmt.Println("Result:", result)
+		}
+	}
+	return resultList
 }
