@@ -1,5 +1,6 @@
 import './Test.css'
 import { dnaValidation } from '../../utils/DNAValidation';
+import Switch from '../../components/Switch/Switch'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -7,9 +8,9 @@ function Test() {
     const [patientName, setPatientName] = useState('');
     const [patientDna, setPatiendna] = useState('');
     const [diseasePrediction, setDiseasePrediction] = useState('');
+    const [isKMP, setIsKMP] = useState(false);
     const [validDna, setValidDna] = useState(false);
     const [submitted, setSubmitted] = useState(false);
-    const [date, setDate] = useState(null);
 
     const fileHandler = (e) => { 
         const file = e.target.files[0];
@@ -25,20 +26,33 @@ function Test() {
 
     const testDna = async (e) => {
         e.preventDefault();
-        // await axios.post('http://localhost:8080/api/v1/add/test', {
-        // });
+        setSubmitted(true);
+
         if (dnaValidation(patientDna)) {
             setValidDna(true)
+            var method = 'KMP';
+            if(!isKMP) {
+                method = 'Boyer Moore'
+            } 
+
+            const data = {
+                nama_pasien: patientName,
+                penyakit_prediksi: diseasePrediction,
+                method: method,
+                text: patientDna,
+            };
+
+            const response = await axios.post('http://localhost:8080/api/v1/test', data);
+            console.log('Ini return dari POST: ');
+            console.log(response.data.data);
         }
         else {
             setValidDna(false)
         }
-        setSubmitted(true);
     }
 
     useEffect(function () {
         document.title='Test DNA | Algeo Comeback';
-        setDate(new Date());
     }, []);
 
     return (
@@ -87,6 +101,11 @@ function Test() {
                             name="inputFile"
                             required
                         />
+                        <div className="flex items-center mt-6 gap-x-5">
+                            <p className="text-2xl text-white">Boyer Moore</p>
+                            <Switch isToggled={isKMP} onToggle={() => setIsKMP(!isKMP)}/>
+                            <p className="text-2xl text-white">KMP</p>
+                        </div>
                         <button type="submit" className="submit-btn flex justify-center my-8 py-3 bg-bcolor-2">
                             <h2>SUBMIT</h2>
                         </button>
@@ -95,13 +114,7 @@ function Test() {
                 { 
                     submitted && (
                         validDna ?
-                        <div className="alert-success flex flex-col mb-10 mr-10 p-5 items-center justify-center text-center bg-slate-400">
-                            <div>{ patientName }</div>
-                            <div>{ patientDna }</div>
-                            <div>{ diseasePrediction }</div>
-                            <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
-                            <div>Date (Y-m-d)</div>
-                            <div>{ 'Submitted' }</div>
+                        <div className="alert-success flex flex-col mb-10 mr-10 p-5 items-center justify-center text-center">
                             <h2>28 April 2022 - Fulan - Herpes - False</h2>
                         </div>
                         :

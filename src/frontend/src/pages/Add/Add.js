@@ -31,11 +31,10 @@ function Add() {
                 nama_penyakit: diseaseName,
                 rantai_dna: sequenceDna
             };
-            console.log(data);
             
             const response = await axios.post('http://localhost:8080/api/v1/add/disease', data);
             console.log('Ini return dari POST: ');
-            console.log(response.data);
+            console.log(response.data.data);
         }
         else {
             setValidDna(false)
@@ -86,18 +85,10 @@ function Add() {
                     submitted && (
                         validDna ?
                         <div className="alert-success test-css flex flex-col mb-10 mr-10 items-center justify-center py-5">
-                            {/* <div>{ diseaseName }</div>
-                            <div>{ sequenceDna }</div>
-                            <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
-                            <div>{ 'Submitted' }</div> */}
                             <h2> - ADD DISEASE SUCCESSFUL - </h2>
                         </div>
                         :
                         <div className="alert-danger test-css flex flex-col mb-10 mr-10 items-center justify-center py-5">
-                            {/* <div>{ diseaseName }</div>
-                            <div>{ sequenceDna }</div>
-                            <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
-                            <div>{ 'Submitted' }</div> */}
                             <h2> - INVALID DNA - </h2>
                         </div>
                     )
