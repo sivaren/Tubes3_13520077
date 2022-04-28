@@ -1,5 +1,7 @@
 package libs
 
+// Menerima masukan pattern berupa string
+// Mengembalikan ukuran terbesar prefix dari pattern[0..k] dan suffix dari pattern[1..K]
 func BorderFunction(pattern string) []int {
 	N := len(pattern)
 	var borderList = make([]int, N)

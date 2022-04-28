@@ -1,9 +1,8 @@
-import './Hero.css'
-import hero from '../../assets/hero.png'
+import './Hero.css';
+import hero from '../../assets/hero.png';
 import { Link } from 'react-router-dom';
 
 function Hero() {
-
     return (
         <>
             <div className="hero z-40 flex items-center">

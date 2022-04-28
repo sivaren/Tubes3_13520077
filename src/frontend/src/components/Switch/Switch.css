@@ -26,11 +26,12 @@
 
 .slider:before {
     position: absolute;
-    content: "";
     height: 26px;
     width: 26px;
     left: 4px;
     bottom: 4px;
+
+    content: "";
     background-color: rgba(0, 0, 0, 0.775);
     transition: 0.4s;
 }

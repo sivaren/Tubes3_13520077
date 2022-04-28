@@ -26,7 +26,7 @@ func DNATest(Input models.Input) (models.HasilPrediksi, error) {
 	} else {
 		status = libs.SearchBoyerMoore(Input.SequenceDNAPasien, DNAPenyakit)
 	}
-	accuracy := libs.HammingDistance(Input.SequenceDNAPasien, DNAPenyakit)
+	accuracy := libs.Score(Input.SequenceDNAPasien, DNAPenyakit)
 
 	if accuracy >= 0.8 {
 		status = true

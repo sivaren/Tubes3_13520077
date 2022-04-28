@@ -8,14 +8,14 @@
     
     justify-content: center;
     align-items: center;
-
-    /* background-color: rgb(37 99 235 / 0.5); */
 }
+
 .nav-item {
     transition-delay: 150ms;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .nav-item:hover {
     background-color: rgba(255, 255, 255, 0.216);
     outline: var(--color1) solid 1px;
