@@ -10,12 +10,19 @@ import axios from 'axios'
 function Result() {
     const [searchValue, setSearchValue] = useState('');
     const [results, setResults] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const getResults = async () => {
-        const response = await axios.post('http://localhost:8080/api/v1/search', {});
-        
-        console.log(response.data.data);
-        setResults(response.data.data);
+        try {
+            // http://localhost:8080/api/v1/search
+            const response = await axios.post('http://localhost:8080/api/v1/search', {});
+            // console.log(response);
+            console.log(response.data);
+            setResults(response.data);
+        } catch (err) {
+            console.error(err);
+        }
+        setIsLoading(false);
     }
 
     useEffect(function () {
@@ -42,7 +49,11 @@ function Result() {
                     />
                 </div>
                 <div className="flex flex-col my-7 gap-y-4 text-color-1">
-                    { results.length > 0 ? 
+                    { isLoading ? 
+                        <div className="result-loading flex justify-center text-center p-5">
+                            <h2> - LOADING - </h2>
+                        </div>
+                    : results.length > 0 ? 
                         results.filter((val) => {
                             if(searchValue === "") {
                                 return val
@@ -68,9 +79,9 @@ function Result() {
                         </div>
                     }
                 </div>
-                <div className="test-css flex flex-col my-5 mr-10 items-center justify-center py-5 bg-slate-400">
+                {/* <div className="test-css flex flex-col my-5 mr-10 items-center justify-center py-5 bg-slate-400">
                     <div>{ searchValue }</div>
-                </div>
+                </div> */}
            </div>
         </>
     );

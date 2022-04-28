@@ -8,6 +8,7 @@ function Add() {
     const [sequenceDna, setSequenceDna] = useState('');
     const [validDna, setValidDna] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fileHandler = (e) => {
         const file = e.target.files[0];
@@ -24,6 +25,7 @@ function Add() {
     const addDisease = async (e) => {
         e.preventDefault();
         setSubmitted(true);
+        setIsLoading(true);
 
         if (dnaValidation(sequenceDna)) {
             setValidDna(true)
@@ -32,9 +34,16 @@ function Add() {
                 rantai_dna: sequenceDna
             };
             
-            const response = await axios.post('http://localhost:8080/api/v1/add/disease', data);
-            console.log('Ini return dari POST: ');
-            console.log(response.data.data);
+            try {
+                // http://localhost:8080/api/v1/add/disease
+                const response = await axios.post('http://localhost:8080/api/v1/add/disease', data);
+                console.log('Ini return dari POST: ');
+                console.log(response.data.data);
+            } catch (err) {
+                console.error(err);
+                // error handling
+            }
+            setIsLoading(false);
         }
         else {
             setValidDna(false)
@@ -83,13 +92,19 @@ function Add() {
                 </div>
                 {
                     submitted && (
-                        validDna ?
-                        <div className="alert-success test-css flex flex-col mb-10 mr-10 items-center justify-center py-5">
-                            <h2> - ADD DISEASE SUCCESSFUL - </h2>
-                        </div>
+                        validDna ? (
+                            isLoading ?
+                                <div className="alert-loading test-css flex flex-col mb-10 mr-10 items-center justify-center py-5">
+                                    <h2> - LOADING - </h2>
+                                </div>
+                            :
+                                <div className="alert-success test-css flex flex-col mb-10 mr-10 items-center justify-center py-5">
+                                    <h2> - ADD DISEASE SUCCESSFUL - </h2>
+                                </div>
+                        )
                         :
                         <div className="alert-danger test-css flex flex-col mb-10 mr-10 items-center justify-center py-5">
-                            <h2> - INVALID DNA - </h2>
+                            <h2> - INVALID DNA - </h2>                       
                         </div>
                     )
                 }
