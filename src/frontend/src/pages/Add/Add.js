@@ -60,6 +60,7 @@ function Add() {
         else {
             setValidDna(false)
         }
+        e.target.reset();
     }
 
     useEffect(function () {
