@@ -1,6 +1,7 @@
 import './Add.css'
-import { ValidDNA } from '../../utils/ValidDNA'
+import { ValidDNA } from '../../utils/ValidDNA';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Add() {
     const [diseaseName, setDiseaseName] = useState('');
@@ -8,12 +9,8 @@ function Add() {
     const [validDna, setValidDna] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
-    useEffect(function () {
-        document.title='Add Disease | Algeo Comeback';
-    }, []);
-
-    function fileHandler(event) {
-        const file = event.target.files[0];
+    const fileHandler = (e) => {
+        const file = e.target.files[0];
         const reader = new FileReader();
         reader.readAsText(file);
         reader.onload = () => {
@@ -24,8 +21,11 @@ function Add() {
         }
     }
 
-    function submitHandler(event) {
-        event.preventDefault();
+    const addDisease = async (e) => {
+        e.preventDefault();
+        // await axios.post('link-here', {
+            
+        // });
         if (ValidDNA.test(sequenceDna)) {
             setValidDna(true)
         }
@@ -35,6 +35,10 @@ function Add() {
         setSubmitted(true);
     }
 
+    useEffect(function () {
+        document.title='Add Disease | Algeo Comeback';
+    }, []);
+
     return (
         <>
            <div className="main-page container flex flex-col pl-10 w-4/5">
@@ -42,7 +46,7 @@ function Add() {
                     <h1>ADD DISEASE</h1>
                 </div>
                 <div className="flex-wrap">
-                    <form className="flex flex-col" onSubmit={(event) => submitHandler(event)}>
+                    <form className="flex flex-col" onSubmit={ addDisease }>
                         <h2 className="text-color-1 h2-shadow">Disease Name</h2>
                         <input 
                             type="text"
@@ -58,7 +62,7 @@ function Add() {
                         <h2 className="text-color-1 h2-shadow-md mt-2 mb-1">Sequence DNA</h2>
                         <input 
                             type="file" 
-                            onChange={(event) => fileHandler(event)}
+                            onChange={ fileHandler }
                             className="input-file text-color-1
                             file:mt-1 file:mb-2 file:py-2 file:px-4
                             file:rounded-lg file:shadow-lg file:border-0

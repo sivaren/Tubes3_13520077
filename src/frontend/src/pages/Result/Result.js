@@ -1,5 +1,6 @@
 import './Result.css'
 import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 function Result() {
     const [searchValue, setSearchValue] = useState('');
@@ -18,9 +19,15 @@ function Result() {
         }
     ]);
 
+    const getResults = async () => {
+        const response = await axios.get('link-here');
+        setResults(response.data);
+    }
+
     useEffect(function () {
         document.title='Test Results | Algeo Comeback';
     }, []);
+    
 
     return (
         <>

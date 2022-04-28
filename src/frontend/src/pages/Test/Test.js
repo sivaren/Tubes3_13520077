@@ -1,6 +1,7 @@
 import './Test.css'
-import { ValidDNA } from '../../utils/ValidDNA'
+import { ValidDNA } from '../../utils/ValidDNA';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Test() {
     const [patientName, setPatientName] = useState('');
@@ -8,13 +9,10 @@ function Test() {
     const [diseasePrediction, setDiseasePrediction] = useState('');
     const [validDna, setValidDna] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [date, setDate] = useState(null);
 
-    useEffect(function () {
-        document.title='Test DNA | Algeo Comeback';
-    }, []);
-
-    function fileHandler(event) {
-        const file = event.target.files[0];
+    const fileHandler = (e) => { 
+        const file = e.target.files[0];
         const reader = new FileReader();
         reader.readAsText(file);
         reader.onload = () => {
@@ -25,8 +23,11 @@ function Test() {
         }
     }
 
-    function submitHandler(event) {
-        event.preventDefault();
+    const testDna = async (e) => {
+        e.preventDefault();
+        // await axios.post('link-here', {
+            
+        // });
         if (ValidDNA.test(patientDna)) {
             setValidDna(true)
         }
@@ -36,6 +37,11 @@ function Test() {
         setSubmitted(true);
     }
 
+    useEffect(function () {
+        document.title='Test DNA | Algeo Comeback';
+        setDate(new Date());
+    }, []);
+
     return (
         <>
             <div className="main-page container flex flex-col pl-10 w-4/5">
@@ -43,7 +49,7 @@ function Test() {
                     <h1>TEST DNA</h1>
                 </div>
                 <div className="flex-wrap">
-                    <form onSubmit={(event) => submitHandler(event)}>
+                    <form onSubmit={ testDna }>
                         <div className="flex">
                             <div className="flex-col basis-1/2">
                                 <h2 className="text-color-1 h2-shadow">Patient Name</h2>
@@ -74,7 +80,7 @@ function Test() {
                         <h2 className="text-color-1 h2-shadow mt-2 mb-1">Sequence DNA</h2>
                         <input 
                             type="file" 
-                            onChange={(event) => fileHandler(event)}
+                            onChange={ fileHandler }
                             className="input-file text-color-1
                             file:mt-1 file:mb-2 file:py-2 file:px-4
                             file:rounded-lg file:shadow-lg file:border-0
@@ -95,6 +101,7 @@ function Test() {
                             <div>{ patientDna }</div>
                             <div>{ diseasePrediction }</div>
                             <div>{ validDna ? 'Valid' : 'Invalid' } DNA</div>
+                            <div>Date (Y-m-d)</div>
                             <div>{ 'Submitted' }</div>
                             <h2>28 April 2022 - Fulan - Herpes - False</h2>
                         </div>
