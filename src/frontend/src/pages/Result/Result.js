@@ -15,7 +15,7 @@ function Result() {
     const getResults = async () => {
         try {
             // route: http://localhost:8080/api/v1/search
-            const response = await axios.post('http://localhost:8080/api/v1/search', {});
+            const response = await axios.get('http://localhost:8080/api/v1/search');
             setResults(response.data.data);
             console.log(response.data.data);
         } catch (err) {
